@@ -1,18 +1,20 @@
 import React, { useContext } from 'react';
+import { storage } from '../../utils/storage';
 import VideoGrid from '../../components/VideoGrid';
-import { Welcome } from './styled';
+import { Favorites } from './styled';
 import GlobalContext from '../../state/GlobalContext';
 
-function HomePage({ videos }) {
+function FavoritesPage() {
   const { state } = useContext(GlobalContext);
   const { theme } = state;
+  const videos = storage.get('favoriteList');
 
   return (
     <section>
-      <Welcome theme={theme}>Welcome</Welcome>
+      <Favorites theme={theme}>Favorites</Favorites>
       <VideoGrid videos={videos} />
     </section>
   );
 }
 
-export default HomePage;
+export default FavoritesPage;
