@@ -12,15 +12,13 @@ import {
   NavElementsWrapper,
 } from './styled';
 import { fetchVideos } from '../../lib/youTubeApi';
-import SearchWordContext from '../../state/SearchWordContext';
-import ThemeContext from '../../state/ThemeContext';
+import GlobalContext from '../../state/GlobalContext';
 
 const Navbar = ({ setVideos }) => {
   const [checked, setChecked] = React.useState(false);
   const [open, setOpen] = React.useState(false);
-  const { state } = useContext(SearchWordContext);
-  const { stateTheme, dispatchTheme } = useContext(ThemeContext);
-  const { theme } = stateTheme;
+  const { state, dispatch } = useContext(GlobalContext);
+  const { theme } = state;
 
   React.useEffect(() => {
     fetchVideos(state.word).then((videosData) => {
@@ -31,21 +29,25 @@ const Navbar = ({ setVideos }) => {
   const changeHandler = () => {
     setChecked(!checked);
     if (!checked) {
-      dispatchTheme({
+      dispatch({
         type: 'SET_THEME',
         payload: {
-          navBar: '#556cd6',
-          content: '#303030',
-          text: 'white',
+          theme: {
+            navBar: '#556cd6',
+            content: '#303030',
+            text: 'white',
+          },
         },
       });
     } else {
-      dispatchTheme({
+      dispatch({
         type: 'SET_THEME',
         payload: {
-          navBar: '#3fc7cb',
-          content: 'white',
-          text: 'black',
+          theme: {
+            navBar: '#3fc7cb',
+            content: 'white',
+            text: 'black',
+          },
         },
       });
     }

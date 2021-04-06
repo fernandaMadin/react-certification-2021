@@ -1,17 +1,17 @@
 import React, { useContext } from 'react';
 import { useHistory } from 'react-router';
 import { Input } from './styled';
-import SearchWordContext from '../../state/SearchWordContext';
+import GlobalContext from '../../state/GlobalContext';
 
 const SearchInput = () => {
-  const { state, dispatch } = useContext(SearchWordContext);
+  const { state, dispatch } = useContext(GlobalContext);
   const [searchWord, setSearchWord] = React.useState(state.word);
   const history = useHistory();
 
   const triggerChange = () => {
     dispatch({
       type: 'SET_WORD',
-      payload: searchWord,
+      payload: { word: searchWord },
     });
 
     history.push('/');
