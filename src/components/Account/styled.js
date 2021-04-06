@@ -1,7 +1,6 @@
 import styled from 'styled-components';
-import { AccountCircle } from '@styled-icons/material-outlined/AccountCircle';
 
-const AccountIcon = styled(AccountCircle)`
+const AccountIcon = styled.img`
   color: white;
   width: 50px;
   height: 50px;

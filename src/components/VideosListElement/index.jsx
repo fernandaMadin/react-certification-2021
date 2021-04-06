@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import { ListElement, Image, Detail, Description } from './styled';
-import ThemeContext from '../../state/ThemeContext';
+import GlobalContext from '../../state/GlobalContext';
 
 const VideosListElement = ({ snippet }) => {
-  const { stateTheme } = useContext(ThemeContext);
-  const { theme } = stateTheme;
+  const { state } = useContext(GlobalContext);
+  const { theme } = state;
 
   return (
     <ListElement>

@@ -7,18 +7,16 @@ import Layout from '../Layout';
 import HomePage from '../../pages/Home';
 import LoginPage from '../../pages/Login';
 import VideoDetailPage from '../../pages/VideoDetail';
+import FavoritesPage from '../../pages/Favorites';
 import NotFound from '../../pages/NotFound';
-import SearchWordContext from '../../state/SearchWordContext';
-import SearchWordReducer from '../../state/SearchWordReducer';
-import ThemeContext from '../../state/ThemeContext';
-import ThemeReducer from '../../state/ThemeReducer';
+import GlobalContext from '../../state/GlobalContext';
+import GlobalReducer from '../../state/GlobalReducer';
+import Private from '../Private';
 
 export default function App() {
   const [videos, setVideos] = React.useState([]);
-  const [state, dispatch] = useReducer(SearchWordReducer, {
+  const [state, dispatch] = useReducer(GlobalReducer, {
     word: 'Wizeline',
-  });
-  const [stateTheme, dispatchTheme] = useReducer(ThemeReducer, {
     theme: {
       navBar: '#3fc7cb',
       content: 'white',
@@ -29,27 +27,28 @@ export default function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
-        <ThemeContext.Provider value={{ stateTheme, dispatchTheme }}>
-          <SearchWordContext.Provider value={{ state, dispatch }}>
-            <NavBar setVideos={setVideos} />
-            <Layout>
-              <Switch>
-                <Route exact path="/login">
-                  <LoginPage />
-                </Route>
-                <Route exact path="/">
-                  <HomePage videos={videos} />
-                </Route>
-                <Route exact path="/:id">
-                  <VideoDetailPage videos={videos} />
-                </Route>
-                <Route path="*">
-                  <NotFound />
-                </Route>
-              </Switch>
-            </Layout>
-          </SearchWordContext.Provider>
-        </ThemeContext.Provider>
+        <GlobalContext.Provider value={{ state, dispatch }}>
+          <NavBar setVideos={setVideos} />
+          <Layout>
+            <Switch>
+              <Route exact path="/">
+                <HomePage videos={videos} />
+              </Route>
+              <Route exact path="/login">
+                <LoginPage />
+              </Route>
+              <Private exact path="/favorites">
+                <FavoritesPage />
+              </Private>
+              <Route exact path="/video/:id">
+                <VideoDetailPage />
+              </Route>
+              <Route exact path="*">
+                <NotFound />
+              </Route>
+            </Switch>
+          </Layout>
+        </GlobalContext.Provider>
       </AuthProvider>
     </BrowserRouter>
   );

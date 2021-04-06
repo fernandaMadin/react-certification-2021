@@ -3,15 +3,15 @@ import { Link } from 'react-router-dom';
 import { AUTH_STORAGE_KEY } from '../../utils/constants';
 import { storage } from '../../utils/storage';
 import { LinkText, ContainerMenu, SideMen, CloseBtn, Links, CloseIcon } from './styled';
-import ThemeContext from '../../state/ThemeContext';
+import GlobalContext from '../../state/GlobalContext';
 
 const SideMenu = ({ open, setOpen }) => {
   const isLogged = storage.get(AUTH_STORAGE_KEY);
-  const { stateTheme } = useContext(ThemeContext);
-  const { theme } = stateTheme;
+  const { state } = useContext(GlobalContext);
+  const { theme } = state;
 
   const favorites = (
-    <Link to={{ pathname: `/` }} onClick={() => setOpen(!open)}>
+    <Link to={{ pathname: `/favorites` }} onClick={() => setOpen(!open)}>
       <LinkText theme={theme}>
         <span role="img" aria-label="favorites">
           ⭐️
@@ -25,7 +25,7 @@ const SideMenu = ({ open, setOpen }) => {
     <ContainerMenu open={open} data-testid="sideMenu">
       <SideMen open={open} theme={theme}>
         <CloseBtn>
-          <CloseIcon onClick={() => setOpen(!open)} />
+          <CloseIcon onClick={() => setOpen(!open)}>X</CloseIcon>
         </CloseBtn>
         <Links>
           <Link to={{ pathname: `/` }} onClick={() => setOpen(!open)}>

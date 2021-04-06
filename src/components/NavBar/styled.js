@@ -1,10 +1,9 @@
 import styled from 'styled-components';
-import { Dehaze } from '@styled-icons/material-outlined/Dehaze';
 
-const MenuIcon = styled(Dehaze)`
+const MenuIcon = styled.p`
   color: white;
-  width: 50px;
-  height: 50px;
+  font-size: 80px;
+  margin-top: 60px;
 `;
 
 const Nav = styled.div`

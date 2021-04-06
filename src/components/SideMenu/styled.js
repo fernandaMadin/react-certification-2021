@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Close } from '@styled-icons/material-outlined/Close';
 
 const ContainerMenu = styled.div`
   display: flex;
@@ -52,14 +51,15 @@ const LinkText = styled.p`
   }
 `;
 
-const CloseIcon = styled(Close)`
+const CloseIcon = styled.p`
+  font-size: 40px;
   color: lightgray;
   width: 50px;
   height: 50px;
 `;
 
 const CloseBtn = styled.div`
-  text-align-last: end;
+  float: right;
 `;
 
 const Links = styled.div`
