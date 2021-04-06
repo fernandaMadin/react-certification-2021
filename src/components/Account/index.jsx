@@ -4,6 +4,7 @@ import { AccountIcon, Dropdown, Button } from './styled';
 import { AUTH_STORAGE_KEY } from '../../utils/constants';
 import { storage } from '../../utils/storage';
 import { useAuth } from '../../providers/Auth';
+import user from '../../img/user.svg';
 
 const Account = () => {
   const { logout } = useAuth();
@@ -19,6 +20,7 @@ const Account = () => {
   return (
     <div>
       <AccountIcon
+        src={user}
         onClick={() => {
           setOpenDrop(!openDrop);
         }}

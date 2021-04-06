@@ -57,7 +57,9 @@ const Navbar = ({ setVideos }) => {
     <Nav data-testid="navBar">
       <NavContent theme={theme} data-testid="navContent">
         <div>
-          <MenuIcon open={open} onClick={() => setOpen(!open)} />
+          <MenuIcon open={open} onClick={() => setOpen(!open)}>
+            =
+          </MenuIcon>
         </div>
         <SideMenu open={open} setOpen={setOpen} />
         <SearchInput />

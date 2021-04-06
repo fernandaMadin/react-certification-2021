@@ -25,7 +25,7 @@ const SideMenu = ({ open, setOpen }) => {
     <ContainerMenu open={open} data-testid="sideMenu">
       <SideMen open={open} theme={theme}>
         <CloseBtn>
-          <CloseIcon onClick={() => setOpen(!open)} />
+          <CloseIcon onClick={() => setOpen(!open)}>X</CloseIcon>
         </CloseBtn>
         <Links>
           <Link to={{ pathname: `/` }} onClick={() => setOpen(!open)}>
